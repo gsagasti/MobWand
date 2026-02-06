@@ -5,23 +5,23 @@ export class EventHandler {
     constructor(manager) {
         this.manager = manager;
 
-        this.onEntityHit();
+        this.onEntityInteract();
         this.onItemUse();
         this.onPlayerSpawn();
         this.onPlayerLeave();
         this.onScriptEvent();
     }
 
-    onEntityHit() {
-        world.afterEvents.entityHitEntity.subscribe(event => {
-            const player = event.damagingEntity;
-            if (player.typeId !== 'minecraft:player') return;
-
-            const inventory = player.getComponent(EntityComponentTypes.Inventory);
-            const item = inventory?.container?.getItem(player.selectedSlotIndex);
+    onEntityInteract() {
+        world.beforeEvents.playerInteractWithEntity.subscribe(event => {
+            const player = event.player;
+            const item = event.itemStack;
             if (!WandValidator.isValid(item)) return;
 
-            this.manager.addMobToSelection(player, event.hitEntity.typeId);
+            event.cancel = true;
+            system.run(() => {
+                this.manager.addMobToSelection(player, event.target.typeId);
+            });
         });
     }
 
