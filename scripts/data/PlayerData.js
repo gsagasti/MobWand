@@ -56,7 +56,8 @@ export class PlayerData {
             this.onWandEquipped();
         }
     }
-        // used to save the pdata when the player leaves
+
+    // serialize pData for storage
     toJSON() {
         return { selectedMobs: this.selectedMobs };
     }

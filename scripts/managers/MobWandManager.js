@@ -44,7 +44,7 @@ export class MobWandManager {
 
         this.pushMobTypeImmediately(player, mobTypeId);
     }
-
+     // immediately pushes all nearby entities of the specified type (used when adding a mob)
     pushMobTypeImmediately(player, mobTypeId) {
         const dimension = player.dimension;
         const playerPos = player.location;
@@ -95,6 +95,7 @@ export class MobWandManager {
         StorageData.save(player, pData);
     }
 
+     // main update loop, handles wand state and mob pushing
     update() {
         for (const player of world.getAllPlayers()) {
             const pData = this.getPlayerData(player.id);
