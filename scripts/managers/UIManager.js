@@ -1,5 +1,5 @@
 import { ActionFormData } from '@minecraft/server-ui';
-import { MobValidator } from './MobValidator.js';
+import { MobValidator } from '../validators/MobValidator.js';
 
 export class UIManager {
     static show(player, playerData, onRemove) {

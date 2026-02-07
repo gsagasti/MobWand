@@ -1,5 +1,5 @@
 import { ItemStack } from '@minecraft/server';
-import { Config } from './Config.js';
+import { Config } from '../config/Config.js';
 
 export class WandValidator {
     static isValid(item) {

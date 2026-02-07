@@ -1,6 +1,6 @@
 import { world } from '@minecraft/server';
 
-export class DataStorage {
+export class StorageData {
     static getKey(playerId) {
         return `mobwand_${playerId}`;
     }

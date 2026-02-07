@@ -1,11 +1,11 @@
 import { world, system, EntityComponentTypes } from '@minecraft/server';
-import { PlayerData } from './PlayerData.js';
-import { MobValidator } from './MobValidator.js';
-import { WandValidator } from './WandValidator.js';
-import { MobPusher } from './MobPusher.js';
+import { PlayerData } from '../data/PlayerData.js';
+import { MobValidator } from '../validators/MobValidator.js';
+import { WandValidator } from '../validators/WandValidator.js';
+import { MobPusher } from '../services/MobPusher.js';
 import { UIManager } from './UIManager.js';
-import { DataStorage } from './DataStorage.js';
-import { Config } from './Config.js';
+import { StorageData } from '../data/StorageData.js';
+import { Config } from '../config/Config.js';
 
 export class MobWandManager {
     constructor() {
@@ -39,7 +39,7 @@ export class MobWandManager {
         }
 
         pData.addMob(mobTypeId);
-        DataStorage.save(player, pData);
+        StorageData.save(player, pData);
         player.sendMessage(`§aMob added: ${MobValidator.getMobDisplayName(mobTypeId)}`);
 
         this.pushMobTypeImmediately(player, mobTypeId);
@@ -68,7 +68,7 @@ export class MobWandManager {
     removeMobFromSelection(player, mobTypeId) {
         const pData = this.getPlayerData(player.id);
         if (pData.removeMob(mobTypeId)) {
-            DataStorage.save(player, pData);
+            StorageData.save(player, pData);
             player.sendMessage(`§eMob removed: ${MobValidator.getMobDisplayName(mobTypeId)}`);
         }
     }
@@ -87,12 +87,12 @@ export class MobWandManager {
 
     loadPlayerData(player) {
         const pData = this.getPlayerData(player.id);
-        DataStorage.load(player, pData);
+        StorageData.load(player, pData);
     }
 
     savePlayerData(player) {
         const pData = this.getPlayerData(player.id);
-        DataStorage.save(player, pData);
+        StorageData.save(player, pData);
     }
 
     update() {

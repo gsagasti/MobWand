@@ -1,5 +1,5 @@
-import { MobWandManager } from './MobWandManager.js';
-import { EventHandler } from './EventHandler.js';
+import { MobWandManager } from './managers/MobWandManager.js';
+import { EventHandler } from './handlers/EventHandler.js';
 
 const manager = new MobWandManager();
 new EventHandler(manager);

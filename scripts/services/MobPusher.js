@@ -1,5 +1,5 @@
 import { system, EntityComponentTypes } from '@minecraft/server';
-import { Config } from './Config.js';
+import { Config } from '../config/Config.js';
 
 export class MobPusher {
     static pushEntity(entity, playerPos) {

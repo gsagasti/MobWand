@@ -1,5 +1,5 @@
 import { world, system, EntityComponentTypes } from '@minecraft/server';
-import { WandValidator } from './WandValidator.js';
+import { WandValidator } from '../validators/WandValidator.js';
 
 export class EventHandler {
     constructor(manager) {
